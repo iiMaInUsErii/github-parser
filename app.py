@@ -15,7 +15,7 @@ def get_github_file_content(repo_url, file_path, branch='main'):
     return None
 
 # Главная страница с документацией
-@app.route('/', methods=['GET'])
+@app.route('/')
 def index():
     return render_template('index.html')
 
