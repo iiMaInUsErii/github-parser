@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta type="text/plain">
+    <title>File Content</title>
+</head>
+<body>
+    {% if content %}
+    <pre>{{ content }}</pre>
+    {% elif error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+</body>
+</html>

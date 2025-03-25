@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Code Parser - Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 5px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>GitHub Code Parser</h1>
+    <p>This tool allows you to fetch and display the content of files from GitHub repositories.</p>
+
+    <h2>How to Use</h2>
+    <ol>
+        <li><strong>GET Request</strong>: Use <code>/get</code> with query parameters:
+            <ul>
+                <li><code>repo_url</code>: Owner and repository name (e.g., <code>octocat/Hello-World</code>).</li>
+                <li><code>file_path</code>: Path to the file in the repository.</li>
+                <li><code>branch</code>: Branch name (default: <code>main</code>).</li>
+            </ul>
+            Example: <a
+                href="/get?repo_url=jasminmakasana/javascript-table&file_path=index.js&branch=main">/get?repo_url=octocat/Hello-World&file_path=README.md&branch=main</a>
+        </li>
+        <li><strong>POST Request</strong>: Use <code>/post</code> with form data:
+            <ul>
+                <li><code>repo_url</code>: Owner and repository name.</li>
+                <li><code>file_path</code>: Path to the file.</li>
+                <li><code>branch</code>: Branch name (default: <code>main</code>).</li>
+            </ul>
+            Example:
+            <pre>
+fetch("/post", {
+    method: "post",
+    headers: { "Content-Type": "application/json;charset=utf-8" },
+    body: JSON.stringify({
+        repo_url: "iiMaInUsErii/tableGenerator",
+        file_path: "tableGenerator.min.js",
+        branch: "main"
+    }),
+})
+            </pre>
+        </li>
+    </ol>
+</body>
+
+</html>
