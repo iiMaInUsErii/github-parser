@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Code Parser - Documentation</title>
     <style>
+        * {
+            outline: none;
+        }
+
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -39,6 +43,28 @@
         a:hover {
             text-decoration: underline;
         }
+        
+        button {
+            border: 0;
+            border-radius: 5px;
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            position: absolute;
+            right: 30px;
+        }
+
+        button:hover {
+            background-color: yellowgreen;
+            color: black;
+        }
+
+        input {
+            font-family: monospace;
+            border-radius: 5px;
+            flex-grow: 1;
+            /* width: calc(4*7px); */
+        }
     </style>
 </head>
 
@@ -65,18 +91,54 @@
             </ul>
             Example:
             <pre>
-fetch("/post", {
+                <button onclick='runtest()'>Run ></button>
+fetch("https://github-parser-black.vercel.app/post", {
     method: "post",
     headers: { "Content-Type": "application/json;charset=utf-8" },
     body: JSON.stringify({
-        repo_url: "iiMaInUsErii/tableGenerator",
-        file_path: "tableGenerator.min.js",
-        branch: "main"
+        repo_url: "<input 
+                    value="iiMaInUsErii/tableGenerator"
+                    required
+                />",
+        file_path: "<input
+                    value="tableGenerator.min.js"
+                    required
+                />",
+        branch: "<input
+                    value="main"
+                />"
     }),
 })
+.then(res => res.text())
+.then(res => alert(res));
             </pre>
         </li>
     </ol>
 </body>
+<script>
+    let inputs = document.getElementsByTagName('input');
+
+    [0, 1, 2].map( (i) => {
+        inputs.item(i).style.width = 8 * (inputs.item(i).value).length + 'px'
+        inputs.item(i).addEventListener('keydown', () => {
+            inputs.item(i).style.width = 8 * (inputs.item(i).value).length + 'px'
+        })
+    })
+
+    let runtest = () => {
+        fetch("https://github-parser-black.vercel.app/post", {
+            method: "post",
+            headers: { "Content-Type": "application/json;charset=utf-8" },
+            body: JSON.stringify({
+                repo_url: document.getElementsByTagName('input').item(0).value,
+                file_path: document.getElementsByTagName('input').item(1).value,
+                branch: document.getElementsByTagName('input').item(2).value
+            }),
+        })
+        .then(res => res.text())
+        .then(res => alert(res));
+    }
+    
+</script>
 
 </html>
